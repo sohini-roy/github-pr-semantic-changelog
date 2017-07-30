@@ -1,0 +1,23 @@
+{
+  "name": "github-pr-semantic-changelog",
+  "version": "1.0.0",
+  "description": "CLI for PR changelogs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sohini-roy/github-pr-semantic-changelog.git"
+  },
+  "author": "Sohini RoyChoudhury & Alice Anjali Tiriya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sohini-roy/github-pr-semantic-changelog/issues"
+  },
+  "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
+  "dependencies": {
+    "clui": "^0.3.6",
+    "github": "^9.2.0"
+  }
+}
