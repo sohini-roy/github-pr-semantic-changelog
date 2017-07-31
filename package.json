@@ -24,9 +24,10 @@
     "dependencies": {
         "github": "^9.2.0",
         "github-token-user": "^3.0.0",
-        "minimist": "^1.2.0"
+        "minimist": "^1.2.0",
+        "npm-package-bin": "0.0.6"
     },
     "bin": {
-        "github-set-pr-status": "./main.js"
+        "github-set-pr-status": "main.js"
     }
 }
