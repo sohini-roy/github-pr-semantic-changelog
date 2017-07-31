@@ -40,7 +40,6 @@ function createStatus() {
         console.log(input);
         if(err){
           console.log("error");
-          console.log(inputRepo);
           console.log(err);
           return ;
         }
