@@ -1,0 +1,33 @@
+{
+    "name": "github-pr-semantic-changelog",
+    "version": "1.0.0",
+    "description": "calculate a changelog for a pull request",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sohini-roy/github-pr-semantic-changelog.git"
+    },
+    "keywords": [
+        "Git",
+        "CLI"
+    ],
+    "author": "sohini-roy",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sohini-roy/github-pr-semantic-changelog/issues"
+    },
+    "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
+    "dependencies": {
+        "github": "^9.2.0",
+        "github-token-user": "^3.0.0",
+        "minimist": "^1.2.0",
+        "request": "^2.81.0"
+    },
+    "bin": {
+        "github-set-pr-status": "./index.js"
+    }
+}
