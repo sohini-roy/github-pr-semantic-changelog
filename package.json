@@ -15,7 +15,7 @@
         "Git",
         "CLI"
     ],
-    "author": "sohini-roy",
+    "author": "Sohini RoyChoudhury & Alice Anjali Tiriya",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/sohini-roy/github-pr-semantic-changelog/issues"
@@ -24,10 +24,9 @@
     "dependencies": {
         "github": "^9.2.0",
         "github-token-user": "^3.0.0",
-        "minimist": "^1.2.0",
-        "request": "^2.81.0"
+        "minimist": "^1.2.0"
     },
     "bin": {
-        "github-set-pr-status": "./index.js"
+        "github-set-pr-status": "./main.js"
     }
 }

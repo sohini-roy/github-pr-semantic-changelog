@@ -3,7 +3,6 @@
 "use strict";
 
 var GitHubApi   = require('github');
-var request     = require('request');
 var githubTokenUser = require('github-token-user');
 var github      = new GitHubApi({
   version: '3.0.0'
@@ -19,23 +18,10 @@ function createStatus() {
   var repoOwner = repo_url[3];
   var repository = repo_url[4];
   var pullRequestNumber = repo_url[6];
-  var sha = "";
-  var options = {
-    url: 'https://api.github.com/repos/' + repoOwner + '/' + repository + '/pulls/' + pullRequestNumber,
-    headers: {
-      'User-Agent': 'sohini-roy'
-    }
-  };
   var input = {
     'owner': repoOwner,
     'repo' : repository,
-    'sha' : '',
-    'state' : state
-  }
-
-  var inputRepo = {
-    'owner': repoOwner,
-    'repo': repository
+    'number' : pullRequestNumber
   }
 
   githubTokenUser(user_token).then(data => {
@@ -44,42 +30,23 @@ function createStatus() {
         type: "token",
         token: user_token
       });
-      // console.log("authenticated using User Token");
-      request(options, prResponse);
+      getCommits();
   });
 
-  function prResponse(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var info = JSON.parse(body);
-      input.sha = info.head.sha;
-    }
-    github.repos.createStatus(
+  function getCommits() {
+    github.pullRequests.getCommits(
       input,
-      function(err, res) {
-        if (err) {
+      function(err, res){
+        console.log(input);
+        if(err){
           console.log("error");
+          console.log(inputRepo);
           console.log(err);
           return ;
         }
         if(res){
-          console.log("Response");
+          console.log("response");
           console.log(res);
-          github.repos.get(
-            inputRepo,
-            function(err, res){
-              console.log(inputRepo);
-              if(err){
-                console.log("get_repo error");
-                console.log(inputRepo);
-                console.log(err);
-                return ;
-              }
-              if(res){
-                console.log("get_repo response");
-                console.log(res);
-              }
-            }
-          );
         }
       }
     );
