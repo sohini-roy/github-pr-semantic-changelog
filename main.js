@@ -25,7 +25,7 @@ function createStatus() {
   }
 
   githubTokenUser(user_token).then(data => {
-      console.log(data);
+      // console.log(data);
       github.authenticate({
         type: "token",
         token: user_token
@@ -37,15 +37,16 @@ function createStatus() {
     github.pullRequests.getCommits(
       input,
       function(err, res){
-        console.log(input);
+        // console.log(input);
         if(err){
           console.log("error");
           console.log(err);
           return ;
         }
         if(res){
-          console.log("response");
-          console.log(res);
+          for( var i = 0; i<res.data.length; i++){
+            console.log(res.data[i].commit.message);
+          }
         }
       }
     );
