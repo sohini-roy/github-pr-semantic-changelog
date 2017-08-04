@@ -4,6 +4,7 @@
     "description": "calculate a changelog for a pull request",
     "main": "main.js",
     "scripts": {
+        "precommit": "npm test",
         "start": "node main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -33,6 +34,7 @@
         "github-set-pr-status": "main.js"
     },
     "devDependencies": {
+        "husky": "^0.14.3",
         "validate-commit-msg": "^2.14.0"
     },
     "config": {
