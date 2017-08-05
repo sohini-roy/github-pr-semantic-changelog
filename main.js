@@ -50,27 +50,11 @@ function createStatus() {
           return ;
         }
         if(res){
-          var invalid_commits = [];
-
           for( var i = 0; i<res.data.length; i++){
             console.log(res.data[i].commit.message);
-
-            var logBackup = console.log;
-            var logMessages = [];
-            console.log = function() {
-                logMessages.push.apply(logMessages, arguments);
-                logBackup.apply(console, arguments);
-            };
-
             var valid = validateMessage(res.data[i].commit.message);
-
-            if(logMessages[0].length != 0){
-                invalid_commits[i] = logMessages[0];
-                console.log("Invalid Commit = "+invalid_commits[i]+" at ="+i);
-            }
-
-
           }
+
           conventionalRecommendedBump({
             preset: 'angular'
           },
@@ -82,19 +66,19 @@ function createStatus() {
             if(result){
               console.log("conventionalRecommendedBump response");
               console.log(result.releaseType);
-              conventionalGithubReleaser(AUTH, {
-                preset: 'angular'
-              },
-              function(err, res){
-                if(err){
-                  console.log("conventionalGithubReleaser error");
-                  console.log(err);
-                }
-                if(res){
-                  console.log("conventionalGithubReleaser response");
-                  console.log(res);
-                }
-              });
+              // conventionalGithubReleaser(AUTH, {
+              //   preset: 'angular'
+              // },
+              // function(err, res){
+              //   if(err){
+              //     console.log("conventionalGithubReleaser error");
+              //     console.log(err);
+              //   }
+              //   if(res){
+              //     console.log("conventionalGithubReleaser response");
+              //     console.log(res);
+              //   }
+              // });
             }
           });
         }
