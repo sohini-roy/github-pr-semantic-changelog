@@ -34,7 +34,7 @@ function createStatus() {
   };
 
   githubTokenUser(user_token).then(data => {
-      console.log(data);
+      // console.log(data);
       github.authenticate({
         type: "token",
         token: user_token
