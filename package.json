@@ -28,7 +28,8 @@
         "github": "^9.2.0",
         "github-token-user": "^3.0.0",
         "minimist": "^1.2.0",
-        "npm-package-bin": "0.0.6"
+        "npm-package-bin": "0.0.6",
+        "standard-changelog": "^1.0.2"
     },
     "bin": {
         "github-pr-semantic-changelog": "main.js"

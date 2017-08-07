@@ -2,6 +2,7 @@
 
 "use strict";
 
+var standardChangelog = require('standard-changelog');
 var gitSemverTags = require('git-semver-tags');
 var conventionalGithubReleaser = require('conventional-github-releaser');
 var conventionalRecommendedBump = require('conventional-recommended-bump');
@@ -16,7 +17,8 @@ function createStatus() {
   var argv = require('minimist')(process.argv.slice(2));
   var inputString = argv;
   var user_token = inputString._[0];
-  var state = inputString._[2];
+  var version = inputString._[2].split(':');
+  var semver = version[1];
   var repo_url = inputString._[1].split('/');
   var repoOwner = repo_url[3];
   var repository = repo_url[4];
@@ -41,7 +43,6 @@ function createStatus() {
   });
 
   function getCommits() {
-    console.log("line 44");
     github.pullRequests.getCommits(
       input,
       function(err, res){
@@ -77,20 +78,8 @@ function createStatus() {
                 }
                 if(tags){
                   console.log(tags);
-                  conventionalGithubReleaser(AUTH, {
-                    preset: 'angular'
-                  },
-                  function(err, res){
-                    if(err){
-                      console.log("conventionalGithubReleaser error");
-                      console.log(err);
-                      return ;
-                    }
-                    if(res){
-                      console.log("conventionalGithubReleaser response");
-                      console.log(res);
-                    }
-                  });
+                  standardChangelog()
+                    .pipe(process.stdout);
                 }
               });
             }
