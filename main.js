@@ -2,6 +2,7 @@
 
 "use strict";
 
+var gitSemverTags = require('git-semver-tags');
 var conventionalGithubReleaser = require('conventional-github-releaser');
 var conventionalRecommendedBump = require('conventional-recommended-bump');
 var validateMessage = require('validate-commit-msg');
@@ -31,7 +32,7 @@ function createStatus() {
   };
 
   githubTokenUser(user_token).then(data => {
-      // console.log(data);
+      console.log(data);
       github.authenticate({
         type: "token",
         token: user_token
@@ -40,6 +41,7 @@ function createStatus() {
   });
 
   function getCommits() {
+    console.log("line 44");
     github.pullRequests.getCommits(
       input,
       function(err, res){
@@ -62,23 +64,35 @@ function createStatus() {
             if(err){
               console.log('conventionalRecommendedBump error');
               console.log(err);
+              return ;
             }
             if(result){
               console.log("conventionalRecommendedBump response");
               console.log(result.releaseType);
-              // conventionalGithubReleaser(AUTH, {
-              //   preset: 'angular'
-              // },
-              // function(err, res){
-              //   if(err){
-              //     console.log("conventionalGithubReleaser error");
-              //     console.log(err);
-              //   }
-              //   if(res){
-              //     console.log("conventionalGithubReleaser response");
-              //     console.log(res);
-              //   }
-              // });
+              gitSemverTags(function(err, tags) {
+                if(err){
+                  console.log("git semver error");
+                  console.log(err);
+                  return ;
+                }
+                if(tags){
+                  console.log(tags);
+                  conventionalGithubReleaser(AUTH, {
+                    preset: 'angular'
+                  },
+                  function(err, res){
+                    if(err){
+                      console.log("conventionalGithubReleaser error");
+                      console.log(err);
+                      return ;
+                    }
+                    if(res){
+                      console.log("conventionalGithubReleaser response");
+                      console.log(res);
+                    }
+                  });
+                }
+              });
             }
           });
         }
