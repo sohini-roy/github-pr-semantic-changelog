@@ -1,3 +1,18 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="1.0.1"></a>
+## 1.0.1 (2017-08-09)
+
+
+### Bug Fixes
+
+* readme updated ([53dc2cc](https://github.com/sohini-roy/github-pr-semantic-changelog/commit/53dc2cc))
+* readme updated ([f6ac612](https://github.com/sohini-roy/github-pr-semantic-changelog/commit/f6ac612))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2017-08-01)
 
