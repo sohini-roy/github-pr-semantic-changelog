@@ -1,59 +1,61 @@
 {
-    "name": "github-pr-semantic-changelog",
-    "version": "1.0.1",
-    "description": "calculate a changelog for a pull request",
-    "main": "main.js",
-    "scripts": {
-        "start": "node main.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/sohini-roy/github-pr-semantic-changelog.git"
-    },
-    "keywords": [
-        "Git",
-        "CLI"
-    ],
-    "author": "Sohini RoyChoudhury & Alice Anjali Tiriya",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/sohini-roy/github-pr-semantic-changelog/issues"
-    },
-    "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
-    "dependencies": {
-        "conventional-github-releaser": "^1.1.12",
-        "conventional-recommended-bump": "^1.0.1",
-        "git-semver-tags": "^1.2.1",
-        "github": "^9.2.0",
-        "github-token-user": "^3.0.0",
-        "minimist": "^1.2.0",
-        "npm-package-bin": "0.0.6",
-        "standard-changelog": "^1.0.2"
-    },
-    "bin": {
-        "github-pr-semantic-changelog": "main.js"
-    },
-    "devDependencies": {
-        "validate-commit-msg": "^2.14.0"
-    },
-    "config": {
-        "validate-commit-msg": {
-            "helpMessage": "\nPlease fix your commit message (and consider using http://npm.im/commitizen)\n",
-            "types": [
-                "feat",
-                "fix",
-                "docs",
-                "style",
-                "refactor",
-                "perf",
-                "test",
-                "chore",
-                "revert",
-                "custom"
-            ],
-            "warnOnFail": true,
-            "autoFix": true
-        }
+  "name": "github-pr-semantic-changelog",
+  "version": "1.0.2-alpha.0",
+  "description": "calculate a changelog for a pull request",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sohini-roy/github-pr-semantic-changelog.git"
+  },
+  "keywords": [
+    "Git",
+    "CLI"
+  ],
+  "author": "Sohini RoyChoudhury & Alice Anjali Tiriya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sohini-roy/github-pr-semantic-changelog/issues"
+  },
+  "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
+  "dependencies": {
+    "conventional-github-releaser": "^1.1.12",
+    "conventional-recommended-bump": "^1.0.1",
+    "git-semver-tags": "^1.2.1",
+    "github": "^9.2.0",
+    "github-token-user": "^3.0.0",
+    "minimist": "^1.2.0",
+    "npm-package-bin": "0.0.6",
+    "standard-changelog": "^1.0.2"
+  },
+  "bin": {
+    "github-pr-semantic-changelog": "main.js"
+  },
+  "devDependencies": {
+    "standard-version": "^4.2.0",
+    "validate-commit-msg": "^2.14.0"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "helpMessage": "\nPlease fix your commit message (and consider using http://npm.im/commitizen)\n",
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert",
+        "custom"
+      ],
+      "warnOnFail": true,
+      "autoFix": true
     }
+  }
 }
