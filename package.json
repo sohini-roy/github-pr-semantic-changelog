@@ -4,7 +4,7 @@
   "description": "calculate a changelog for a pull request",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "concurrently \"node main.js\" \"npm run release -- --prerelease\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version"
   },
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
   "dependencies": {
+    "concurrently": "^3.5.0",
     "conventional-github-releaser": "^1.1.12",
     "conventional-recommended-bump": "^1.0.1",
     "git-semver-tags": "^1.2.1",
