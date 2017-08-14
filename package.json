@@ -1,10 +1,10 @@
 {
   "name": "github-pr-semantic-changelog",
-  "version": "1.0.4-10",
+  "version": "1.0.4",
   "description": "calculate a changelog for a pull request",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js | npm run release -- --prerelease",
+    "start": "node main.js | npm run release --prerelease",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version"
   },
