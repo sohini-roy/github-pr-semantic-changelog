@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.4-5"></a>
+## [1.0.4-5](https://github.com/sohini-roy/github-pr-semantic-changelog/compare/v1.0.4-4...v1.0.4-5) (2017-08-14)
+
+
+
 <a name="1.0.4-4"></a>
 ## [1.0.4-4](https://github.com/sohini-roy/github-pr-semantic-changelog/compare/v1.0.4-3...v1.0.4-4) (2017-08-13)
 
