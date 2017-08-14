@@ -4,7 +4,7 @@
   "description": "calculate a changelog for a pull request",
   "main": "main.js",
   "scripts": {
-    "start": "concurrently --raw --parameter-passthrough \"node main.js\" \"npm run release -- --prerelease\"",
+    "start": "node main.js | npm run release -- --prerelease",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version"
   },
