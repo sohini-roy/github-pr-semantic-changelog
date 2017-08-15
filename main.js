@@ -14,6 +14,7 @@ var github = new GitHubApi({
 
 function createStatus() {
   var argv = require('minimist')(process.argv.slice(2));
+  console.log(argv);
   var invalidCommits = 0;
   var inputString = argv;
   var user_token = inputString._[0];
