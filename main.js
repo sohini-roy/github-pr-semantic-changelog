@@ -14,6 +14,7 @@ var github = new GitHubApi({
 
 function createStatus() {
   var argv = require('minimist')(process.argv.slice(2));
+  // console.log(argv);
   var invalidCommits = 0;
   var inputString = argv;
   var user_token = inputString._[0];
@@ -25,7 +26,8 @@ function createStatus() {
     'owner': repoOwner,
     'repo': repository,
     'sha': '',
-    'state': ''
+    'state': '',
+    'description': ''
   }
   var input = {
     'owner': repoOwner,
@@ -36,33 +38,12 @@ function createStatus() {
     type: 'oauth',
     token: user_token
   };
-  var reviewInput = {
-    'owner': repoOwner,
-    'repo' : repository,
-    'number' : pullRequestNumber,
-    'comments':''
-  }
-
 
     github.authenticate({
       type: "token",
       token: user_token
-    },
-      function(err, res){
-        if(err){
-          console.log("authenication error");
-          console.log(err);
-        }
-        if(res){
-          console.log("authenication response");
-          console.log(res);
-          pullrequest();
-        }
-      }
-    );
+    });
 
-
-  function pullrequest(){
     github.pullRequests.get(
       input,
       function(err, res){
@@ -76,7 +57,6 @@ function createStatus() {
         }
       }
     );
-  }
 
   getCommits();
 
@@ -98,30 +78,18 @@ function createStatus() {
           }
 
           if(invalidCommits){
-            reviewInput.comments = invalidCommits + '/' + res.data.length + ' commit messages are invalid';
-            github.pullRequests.createReview(
-              reviewInput,
+            createStatusInput.description = invalidCommits + '/' + res.data.length + ' commit messages are invalid';
+            createStatusInput.state = 'error'
+            github.repos.createStatus(
+              createStatusInput,
               function(err, res){
                 if(err){
-                  console.log("createReview error");
+                  console.log("createStatus error");
                   console.log(err);
                 }
                 if(res){
-                  console.log("createReview result");
-                  createStatusInput.state = 'error'
-                  github.repos.createStatus(
-                    createStatusInput,
-                    function(err, res){
-                      if(err){
-                        console.log("createStatus error");
-                        console.log(err);
-                      }
-                      if(res){
-                        console.log("createStatus response");
-                        console.log(res);
-                      }
-                    }
-                  );
+                  console.log("createStatus response");
+                  console.log(res);
                 }
               }
             );
