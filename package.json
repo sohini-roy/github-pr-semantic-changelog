@@ -1,6 +1,6 @@
 {
   "name": "github-pr-semantic-changelog",
-  "version": "1.0.4-10",
+  "version": "1.0.4-11",
   "description": "calculate a changelog for a pull request",
   "main": "main.js",
   "scripts": {
