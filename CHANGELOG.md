@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.4-15"></a>
+## [1.0.4-15](https://github.com/sohini-roy/github-pr-semantic-changelog/compare/v1.0.4-13...v1.0.4-15) (2017-08-18)
+
+
+### Bug Fixes
+
+* readme updated ([92a3541](https://github.com/sohini-roy/github-pr-semantic-changelog/commit/92a3541))
+
+
+
 <a name="1.0.4-14"></a>
 ## [1.0.4-14](https://github.com/sohini-roy/github-pr-semantic-changelog/compare/v1.0.4-13...v1.0.4-14) (2017-08-15)
 
