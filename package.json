@@ -1,10 +1,10 @@
 {
   "name": "github-pr-semantic-changelog",
-  "version": "1.0.2",
+  "version": "1.0.4-15",
   "description": "calculate a changelog for a pull request",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "concurrently \"node main.js\" \"npm run release -- --prerelease\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version"
   },
@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
   "dependencies": {
+    "concurrently": "^3.5.0",
     "conventional-github-releaser": "^1.1.12",
     "conventional-recommended-bump": "^1.0.1",
     "git-semver-tags": "^1.2.1",
     "github": "^9.2.0",
-    "github-token-user": "^3.0.0",
     "minimist": "^1.2.0",
     "npm-package-bin": "0.0.6",
     "standard-changelog": "^1.0.2"

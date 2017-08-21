@@ -8,18 +8,16 @@ var conventionalGithubReleaser = require('conventional-github-releaser');
 var conventionalRecommendedBump = require('conventional-recommended-bump');
 var validateMessage = require('validate-commit-msg');
 var GitHubApi   = require('github');
-var githubTokenUser = require('github-token-user');
 var github = new GitHubApi({
   version: '3.0.0'
 });
 
 function createStatus() {
   var argv = require('minimist')(process.argv.slice(2));
+  // console.log(argv);
   var invalidCommits = 0;
   var inputString = argv;
   var user_token = inputString._[0];
-  var version = inputString._[2].split(':');
-  var semver = version[1];
   var repo_url = inputString._[1].split('/');
   var repoOwner = repo_url[3];
   var repository = repo_url[4];
@@ -28,7 +26,8 @@ function createStatus() {
     'owner': repoOwner,
     'repo': repository,
     'sha': '',
-    'state': ''
+    'state': '',
+    'description': ''
   }
   var input = {
     'owner': repoOwner,
@@ -39,35 +38,30 @@ function createStatus() {
     type: 'oauth',
     token: user_token
   };
-  var reviewInput = {
-    'owner': repoOwner,
-    'repo' : repository,
-    'number' : pullRequestNumber,
-    'comments':''
-  }
 
-  githubTokenUser(user_token).then(data => {
-    // console.log(data);
     github.authenticate({
       type: "token",
       token: user_token
     });
-    github.pullRequests.get(
-      input,
-      function(err, res){
-        if(err){
-          console.log("pullRequests get error");
-          console.log(err);
-        }
-        if(res){
-          console.log("pullRequests get response");
-          createStatusInput.sha = res.data.head.sha;
-        }
-      }
-      getCommits();
-    );
-  });
 
+    get_sha();
+
+    function get_sha(){
+      github.pullRequests.get(
+        input,
+        function(err, res){
+          if(err){
+            console.log("pullRequests get error");
+            console.log(err);
+          }
+          if(res){
+            console.log("pullRequests get response");
+            createStatusInput.sha = res.data.head.sha;
+            getCommits();
+          }
+        }
+      );
+    }
 
   function getCommits() {
     github.pullRequests.getCommits(
@@ -83,34 +77,26 @@ function createStatus() {
           for( var i = 0; i<res.data.length; i++) {
             console.log(res.data[i].commit.message);
             var valid = validateMessage(res.data[i].commit.message);
-            if(valid){ invalidCommits += 1; }
+            console.log(valid);
+            // if(valid){
+            //   invalidCommits += 1;
+            //   console.log("invalid");
+            // }
           }
 
           if(invalidCommits){
-            reviewInput.comments = invalidCommits + '/' + res.data.length + ' commit messages are invalid';
-            github.pullRequests.createReview(
-              reviewInput,
+            createStatusInput.description = invalidCommits + '/' + res.data.length + ' commit messages are invalid';
+            createStatusInput.state = 'error'
+            github.repos.createStatus(
+              createStatusInput,
               function(err, res){
                 if(err){
-                  console.log("createReview error");
+                  console.log("createStatus error");
                   console.log(err);
                 }
                 if(res){
-                  console.log("createReview result");
-                  createStatusInput.state = 'error'
-                  github.repos.createStatus(
-                    createStatusInput,
-                    function(err, res){
-                      if(err){
-                        console.log("createStatus error");
-                        console.log(err);
-                      }
-                      if(res){
-                        console.log("createStatus response");
-                        console.log(res);
-                      }
-                    }
-                  );
+                  console.log("createStatus response");
+                  console.log(res);
                 }
               }
             );
@@ -154,8 +140,7 @@ function createStatus() {
                 }
                 if(tags){
                   console.log(tags);
-                  standardChangelog()
-                    .pipe(process.stdout);
+                  standardChangelog().pipe(process.stdout);
                 }
               });
             }
