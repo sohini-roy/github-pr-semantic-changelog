@@ -44,21 +44,24 @@ function createStatus() {
       token: user_token
     });
 
-    github.pullRequests.get(
-      input,
-      function(err, res){
-        if(err){
-          console.log("pullRequests get error");
-          console.log(err);
-        }
-        if(res){
-          console.log("pullRequests get response");
-          createStatusInput.sha = res.data.head.sha;
-        }
-      }
-    );
+    get_sha();
 
-  getCommits();
+    function get_sha(){
+      github.pullRequests.get(
+        input,
+        function(err, res){
+          if(err){
+            console.log("pullRequests get error");
+            console.log(err);
+          }
+          if(res){
+            console.log("pullRequests get response");
+            createStatusInput.sha = res.data.head.sha;
+            getCommits();
+          }
+        }
+      );
+    }
 
   function getCommits() {
     github.pullRequests.getCommits(
@@ -74,7 +77,11 @@ function createStatus() {
           for( var i = 0; i<res.data.length; i++) {
             console.log(res.data[i].commit.message);
             var valid = validateMessage(res.data[i].commit.message);
-            if(valid){ invalidCommits += 1; }
+            console.log(valid);
+            // if(valid){
+            //   invalidCommits += 1;
+            //   console.log("invalid");
+            // }
           }
 
           if(invalidCommits){
