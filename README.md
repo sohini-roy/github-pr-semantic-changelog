@@ -5,13 +5,19 @@
 # Usage
 
 ```shell
-github-pr-semantic-changelog <GitHub token> <PR URL>
+github-pr-semantic-changelog <PR URL> [--token <GitHub token>]
 ```
 
-Example
+Example without authentication
 
 ```shell
-github-pr-semantic-changelog 0123456789abcdef0123456789abcdef01234567 https://github.com/hoodiehq/hoodie/pull/678
+github-pr-semantic-changelog https://github.com/hoodiehq/hoodie/pull/678
+```
+
+Example with authentication
+
+```shell
+github-pr-semantic-changelog --token 0123456789abcdef0123456789abcdef01234567 https://github.com/hoodiehq/hoodie/pull/678
 ```
 
 # How does it work
