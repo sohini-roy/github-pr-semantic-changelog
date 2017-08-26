@@ -16,6 +16,9 @@
     "Git",
     "CLI"
   ],
+  "engines": {
+    "node": ">= 8"
+  },
   "author": "Sohini RoyChoudhury & Alice Anjali Tiriya",
   "license": "ISC",
   "bugs": {
