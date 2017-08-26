@@ -2,11 +2,10 @@
   "name": "github-pr-semantic-changelog",
   "version": "1.0.4-15",
   "description": "calculate a changelog for a pull request",
-  "main": "main.js",
+  "main": "node bin/github-pr-semantic-changelog.js",
   "scripts": {
     "start": "concurrently \"node main.js\" \"npm run release -- --prerelease\"",
-    "test": "standard",
-    "release": "standard-version"
+    "test": "standard"
   },
   "repository": {
     "type": "git",
@@ -27,38 +26,16 @@
   "homepage": "https://github.com/sohini-roy/github-pr-semantic-changelog#readme",
   "dependencies": {
     "concurrently": "^3.5.0",
-    "conventional-recommended-bump": "^1.0.1",
-    "git-semver-tags": "^1.2.1",
+    "conventional-changelog-writer": "^2.0.0",
+    "conventional-commits-parser": "^2.0.0",
     "github": "^9.2.0",
-    "minimist": "^1.2.0",
-    "npm-package-bin": "0.0.6",
-    "standard-changelog": "^1.0.2"
+    "minimist": "^1.2.0"
   },
   "bin": {
     "github-pr-semantic-changelog": "main.js"
   },
   "devDependencies": {
     "standard": "^10.0.3",
-    "standard-version": "^4.2.0",
-    "validate-commit-msg": "^2.14.0"
-  },
-  "config": {
-    "validate-commit-msg": {
-      "helpMessage": "\nPlease fix your commit message (and consider using http://npm.im/commitizen)\n",
-      "types": [
-        "feat",
-        "fix",
-        "docs",
-        "style",
-        "refactor",
-        "perf",
-        "test",
-        "chore",
-        "revert",
-        "custom"
-      ],
-      "warnOnFail": true,
-      "autoFix": true
-    }
+    "standard-version": "^4.2.0"
   }
 }
