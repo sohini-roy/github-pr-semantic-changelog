@@ -10,7 +10,8 @@ const github = new GitHubApi({
   version: '3.0.0'
 })
 
-function createStatus () {
+function createStatus (){
+
   const argv = require('minimist')(process.argv.slice(2))
   const userToken = argv._[0]
   const repoUrl = argv._[1].split('/')
@@ -70,10 +71,6 @@ function createStatus () {
           console.log(result.data[i].commit.message)
           const valid = validateMessage(result.data[i].commit.message)
           console.log(valid)
-          // if(valid){
-          //   invalidCommits += 1;
-          //   console.log("invalid");
-          // }
         }
 
         if (invalidCommits) {
