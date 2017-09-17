@@ -27,8 +27,9 @@
   "dependencies": {
     "conventional-changelog-writer": "^2.0.0",
     "conventional-commits-parser": "^2.0.0",
-    "github": "^9.2.0",
-    "minimist": "^1.2.0"
+    "github": "^9.3.1",
+    "minimist": "^1.2.0",
+    "semver": "^5.4.1"
   },
   "bin": {
     "github-pr-semantic-changelog": "main.js"
