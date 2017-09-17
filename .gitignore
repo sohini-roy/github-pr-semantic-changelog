@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 token
 .env
+package-lock.json
